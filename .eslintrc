@@ -28,7 +28,7 @@
   ],
   "rules": {
     "no-console": 0,
-    "valid-jsdoc": 2,                // Ensure JSDoc comments are valid (off by default)
+    "valid-jsdoc": 0,                // Ensure JSDoc comments are valid (off by default)
 
     // Best Practices
     // These are rules designed to prevent you from making mistakes. They either prescribe a better way of doing something or help you avoid footguns.

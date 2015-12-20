@@ -1,5 +1,9 @@
 /**
- * Created by hxucaa on 2015-12-19.
+ * Created by Lance on 2015-12-19.
  */
 
-"use strict";
+import * as UserValidation from "./UserValidation";
+
+export {
+  UserValidation
+};
