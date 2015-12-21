@@ -90,7 +90,7 @@ gulp.task("lint:w", ["lint"], () => {
 
 gulp.task("jsdoc", ["clean:jsdoc"], () => {
   return gulp
-    .src(["src/**", "README.md"], { read: false })
+    .src([], { read: false })
     .pipe(shell(["./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json"])); // eslint-disable-line max-len
 });
 
