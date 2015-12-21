@@ -102,7 +102,7 @@ export function verifyPassword(password) {
 function isTypeEnumUserType(type) {
   return matchEnum(type, UserType, [new ValidationError(
     1100,
-    "Types has to match its enum value."
+    "Type has to match its enum value."
   )]);
 }
 
