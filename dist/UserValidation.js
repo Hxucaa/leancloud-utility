@@ -101,7 +101,7 @@ function verifyPassword(password) {
  * @returns {Validation} An Validation object containing the results.
  */
 function isTypeEnumUserType(type) {
-  return (0, _Toolbox.matchEnum)(type, UserType, [new _index.ValidationError(1100, "Types has to match its enum value.")]);
+  return (0, _Toolbox.matchEnum)(type, UserType, [new _index.ValidationError(1100, "Type has to match its enum value.")]);
 }
 
 /**
