@@ -23,7 +23,8 @@ const lintSrc = [
   "src/**/*.js",
   "test/**/*.js",
   "gulpfile.babel.js",
-  "gulp/**/*.js"
+  "gulp/**/*.js",
+  "eslint.rc"
 ];
 
 gulp.task("default", () => {
@@ -39,7 +40,24 @@ gulp.task("test:unit", () => {
     .src(["test/unit/**/*.js"], { read: false })
     .pipe(mocha({
       compilers: "js:babel-core/register",
-      reporter: "spec",
+      reporter: "nyan",
+      timeout: 5000,
+      ignoreLeaks: false,
+      recursive: true,
+      harmony: true
+    }))
+    .on("error", gutil.log);
+});
+
+gulp.task("test:gen", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return gulp
+    .src(["test/generative/**/*.js"], { read: false })
+    .pipe(mocha({
+      compilers: "js:babel-core/register",
+      reporter: "nyan",
       timeout: 5000,
       ignoreLeaks: false,
       recursive: true,
@@ -52,14 +70,15 @@ gulp.task("test", callback => {
   runSequence(
     "lint",
     "test:unit",
+    "test:gen",
     callback
   );
 });
 
-gulp.task("test:w", ["test:unit"], () => {
+gulp.task("test:w", ["test:unit", "test:gen"], () => {
   gulp.watch(
     ["src/**", "test/**"],
-    ["test:unit"]
+    ["test:unit", "test:gen"]
   );
 });
 
@@ -90,8 +109,13 @@ gulp.task("lint:w", ["lint"], () => {
 
 gulp.task("jsdoc", ["clean:jsdoc"], () => {
   return gulp
-    .src([], { read: false })
+  // has to to load a dummy file, otherwise the stream won't run
+    .src(["README.md"], { read: false })
     .pipe(shell(["./node_modules/.bin/jsdoc -t ./node_modules/ink-docstrap/template -c jsdoc.conf.json"])); // eslint-disable-line max-len
+});
+
+gulp.task("jsdoc:w", ["jsdoc"], () => {
+  gulp.watch(["src/**"], ["jsdoc"]);
 });
 
 gulp.task("dist:compile", ["clean:dist"], () => {
@@ -101,6 +125,10 @@ gulp.task("dist:compile", ["clean:dist"], () => {
       presets: ["es2015"]
     }))
     .pipe(gulp.dest("dist"));
+});
+
+gulp.task("dist:compile:w", ["dist:compile"], () => {
+  gulp.watch(["src/**"]);
 });
 
 gulp.task("clean:dist", () => {
@@ -116,7 +144,7 @@ gulp.task("clean:jsdoc", () => {
   ]);
 });
 
-gulp.task("watch", ["test:w", "lint:w"]);
+gulp.task("watch", ["test:w", "lint:w", "dist:compile:w", "jsdoc:w"]);
 
 gulp.task("help", () => { // eslint-disable-line max-statements
   gutil.log("");
@@ -140,7 +168,8 @@ gulp.task("help", () => { // eslint-disable-line max-statements
   gutil.log("Watch tests");
   gutil.log("$ gulp test:w");
   gutil.log("");
-  gutil.log("Watch lint and tests");
+  gutil.log("Continuously run lint, tests, jsdoc generation, and " +
+    "distribution code generation on file change");
   gutil.log("$ gulp watch");
   gutil.log("");
   gutil.log("Generate jsdoc");

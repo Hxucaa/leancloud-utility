@@ -9,7 +9,8 @@
   "globals": {
     "expect": true,
     "assert": true,
-    "Fixture": true
+    "Fixture": true,
+    "Validation": true
   },
   "rules": {
     "semi": [2, "always"],

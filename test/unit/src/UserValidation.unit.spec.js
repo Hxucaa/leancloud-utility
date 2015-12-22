@@ -6,12 +6,11 @@
 
 //import _ from "lodash";
 
-import { UserValidation } from "~/src/index";
-import Chance from "chance";
-
 describe("User controller validation rules", () => {
 
-  describe("#RULE isUsernameValid", () => {
+  const UserValidation = Validation.UserValidation;
+
+  describe("#RULE verifyUsername", () => {
 
     describe("success", () => {
 
@@ -102,79 +101,47 @@ describe("User controller validation rules", () => {
         });
       });
     });
+  });
 
+  describe("#RULE verifyType", () => {
 
-    describe("generative testing", () => {
+    describe("success", () => {
 
-      const chance = new Chance();
-
-      const generator = {
-        alphanumeric(minLength, maxLength, quantity) {
-          const array = [];
-
-          for (let i = 0; i < quantity; i++) {
-            const length = chance.integer({ min: minLength, max: maxLength });
-            const str = chance.string({
-              length,
-              pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            });
-
-            array.push(str);
-          }
-          return array;
-        },
-        ascii(minLength, maxLength, quantity) {
-          const array = [];
-
-          for (let i = 0; i < quantity; i++) {
-            const length = chance.integer({ min: minLength, max: maxLength });
-            const str = chance.string({ length, pool: "!@#$%^&*()[]" });
-
-            array.push(str);
-          }
-          return array;
-        }
-      };
-
-      it("should generate alphanumeric string of length 10 and all yield success", () => {
-        generator.alphanumeric(5, 29, 100).forEach(username => {
-          const result = UserValidation.verifyUsername(username);
+      context("when type is 1", () => {
+        it("should yield success", () => {
+          const type = 1;
+          const result = UserValidation.verifyType(type);
 
           expect(result).to.be.success;
         });
       });
 
-      describe("generate string longer than 30 characters", () => {
-        it("should yield failure", () => {
-          generator.alphanumeric(31, 50, 100).forEach(username => {
-            const result = UserValidation.verifyUsername(username);
+      context("when type is 2", () => {
+        it("should yield success", () => {
+          const type = 1;
+          const result = UserValidation.verifyType(type);
 
-            expect(result).to.be.failure;
-            expect(result).to.have.errors([Fixture.ValidationError.length]);
-          });
+          expect(result).to.be.success;
+        });
+      });
+    });
+
+    describe("failure", () => {
+      context("when type is 3", () => {
+        it("should yield failure", () => {
+          const type3 = 3;
+          const result = UserValidation.verifyType(type3);
+
+          expect(result).to.be.failure;
         });
       });
 
-      describe("generate string shorter than 5 characters", () => {
-        it("should yield failure", () => {
-          generator.alphanumeric(1, 4, 100).forEach(username => {
-            const result = UserValidation.verifyUsername(username);
+      context("when type is -1", () => {
+        const type3 = -1;
+        const result = UserValidation.verifyType(type3);
 
-            expect(result).to.be.failure;
-            expect(result).to.have.errors([Fixture.ValidationError.length]);
-          });
-        });
-      });
+        expect(result).to.be.failure;
 
-      describe("generate string with symbols", () => {
-        it("should yield failure", () => {
-          generator.ascii(5, 29, 100).forEach(username => {
-            const result = UserValidation.verifyUsername(username);
-
-            expect(result).to.be.failure;
-            expect(result).to.have.errors([Fixture.ValidationError.alphanumeric]);
-          });
-        });
       });
     });
   });

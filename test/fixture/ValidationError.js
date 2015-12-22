@@ -15,3 +15,8 @@ export const length = new ValidationError(
   1002,
   "Username has to have between 5 to 30 characters."
 );
+
+export const TypeNotMatchEnumValue = new ValidationError(
+  1100,
+  "Type has to match its enum value."
+);

@@ -1,5 +1,5 @@
 /**
- * Created by Lance on 2015-12-19.
+ * Created by hxucaa on 2015-11-19.
  */
 
 "use strict";
@@ -23,7 +23,7 @@ global.Validation = require("../../src/index")(AV);
 
 before(done => {
   console.log("---------------------------------------------------------------------------------");
-  console.log("                   Unit      Test      Starting                                  ");
+  console.log("                   Generative      Test      Starting                            ");
   console.log("---------------------------------------------------------------------------------");
   console.log("");
   done();
