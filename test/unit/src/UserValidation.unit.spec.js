@@ -75,7 +75,7 @@ describe("User controller validation rules", () => {
           const result = UserValidation.verifyUsername(username);
 
           expect(result).to.be.failure;
-          expect(result).to.have.errors([Fixture.ValidationError.length]);
+          expect(result).to.have.errors([Fixture.ValidationError.usernameLength]);
         });
 
 
@@ -86,7 +86,7 @@ describe("User controller validation rules", () => {
           expect(result).to.be.failure;
           expect(result).to.have.errors([
             Fixture.ValidationError.alphanumeric,
-            Fixture.ValidationError.length
+            Fixture.ValidationError.usernameLength
           ]);
         });
       });
@@ -97,7 +97,7 @@ describe("User controller validation rules", () => {
           const result = UserValidation.verifyUsername(username);
 
           expect(result).to.be.failure;
-          expect(result).to.have.errors([Fixture.ValidationError.length]);
+          expect(result).to.have.errors([Fixture.ValidationError.usernameLength]);
         });
       });
     });

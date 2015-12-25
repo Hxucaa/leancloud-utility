@@ -267,6 +267,34 @@ module.exports = function(AV) { // eslint-disable-line max-statements
       .ap(matchesEnumHoroscope(horoscope));
   }
 
+  /**
+   * Verify whatsUp.
+   * @alias module:ValidationStack/UserValidation.verifyWhatsUp
+   * @param {string|WhatsUp} whatsUp - The whatsUp status of User object.
+   * @returns {Validation} An Validation object containing the results.
+   */
+  function verifyWhatsUp(whatsUp) {
+    /**
+     * Check whether the username has 30 or less characters
+     * @function isWhatsUpLength
+     * @param {string} whatsUp - The whatsUp status of User object.
+     * @returns {Validation} A Validation object containing the results.
+     */
+    function isWhatsUpLength(whatsUp) {
+      return Validator.isLength(whatsUp, 0, 29) ?
+        success(whatsUp) :
+        failure([new ValidationError(
+          1005,
+          "WhatsUp has to have 30 or less characters."
+        )]);
+    }
+
+    return success(curryN(1, a => {
+      return [a];
+    }))
+      .ap(isWhatsUpLength(whatsUp));
+  }
+
   return {
     verifyUsername,
     verifyPassword,
@@ -275,6 +303,7 @@ module.exports = function(AV) { // eslint-disable-line max-statements
     verifyGender,
     verifyBirthday,
     verifyAgeGroup,
-    verifyHoroscope
+    verifyHoroscope,
+    verifyWhatsUp
   };
 };

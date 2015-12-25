@@ -59,7 +59,7 @@ describe("User controller validation rules", () => {
             const result = UserValidation.verifyUsername(username);
 
             expect(result).to.be.failure;
-            expect(result).to.have.errors([Fixture.ValidationError.length]);
+            expect(result).to.have.errors([Fixture.ValidationError.usernameLength]);
           });
         });
       });
@@ -70,7 +70,7 @@ describe("User controller validation rules", () => {
             const result = UserValidation.verifyUsername(username);
 
             expect(result).to.be.failure;
-            expect(result).to.have.errors([Fixture.ValidationError.length]);
+            expect(result).to.have.errors([Fixture.ValidationError.usernameLength]);
           });
         });
       });
@@ -82,6 +82,50 @@ describe("User controller validation rules", () => {
 
             expect(result).to.be.failure;
             expect(result).to.have.errors([Fixture.ValidationError.alphanumeric]);
+          });
+        });
+      });
+    });
+  });
+
+  describe("#RULE verifyWhatsUp", () => {
+
+    describe("generative testing", () => {
+
+      const chance = new Chance();
+
+      const generator = {
+        alphanumericAndSymbols(minLength, maxLength, quantity) {
+          const array = [];
+
+          for (let i = 0; i < quantity; i++) {
+            const length = chance.integer({ min: minLength, max: maxLength });
+            const str = chance.string({
+              length,
+              pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]"
+            });
+
+            array.push(str);
+          }
+          return array;
+        }
+      };
+
+      it("should generate whatsUp string of length 30 or less and all yield success", () => {
+        generator.alphanumericAndSymbols(0, 29, 100).forEach(whatsUp => {
+          const result = UserValidation.verifyWhatsUp(whatsUp);
+
+          expect(result).to.be.success;
+        });
+      });
+
+      describe("generate whatsUp string longer than 30 characters", () => {
+        it("should yield failure", () => {
+          generator.alphanumericAndSymbols(31, 50, 100).forEach(whatsUp => {
+            const result = UserValidation.verifyWhatsUp(whatsUp);
+
+            expect(result).to.be.failure;
+            expect(result).to.have.errors([Fixture.ValidationError.whatsUpLength]);
           });
         });
       });
