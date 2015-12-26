@@ -270,7 +270,7 @@ module.exports = function(AV) { // eslint-disable-line max-statements
   /**
    * Verify whatsUp.
    * @alias module:ValidationStack/UserValidation.verifyWhatsUp
-   * @param {string|WhatsUp} whatsUp - The whatsUp status of User object.
+   * @param {string} whatsUp - The whatsUp status of User object.
    * @returns {Validation} An Validation object containing the results.
    */
   function verifyWhatsUp(whatsUp) {
