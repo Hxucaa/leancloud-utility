@@ -86,7 +86,7 @@ module.exports = function(AV) { // eslint-disable-line max-statements
         success(password) :
         failure([new ValidationError(
           1003,
-          "Password has to have between 8 to 49 characters."
+          "Password has to have between 8 to 50 characters."
         )]);
     }
 
