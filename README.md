@@ -1,4 +1,4 @@
-# Validation Stack
+# Validation Stack [![Build Status](https://travis-ci.org/ZenChat/validation-stack.svg?branch=master)](https://travis-ci.org/ZenChat/validation-stack)
 
 
 # Folder Structure
