@@ -74,7 +74,7 @@ module.exports = function (AV) {
      * @returns {Validation} A Validation object containing the result.
      */
     function isPasswordLength(password) {
-      return _validator2.default.isLength(password, 8, 49) ? success(password) : failure([new _index.ValidationError(1003, "Password has to have between 8 to 49 characters.")]);
+      return _validator2.default.isLength(password, 8, 49) ? success(password) : failure([new _index.ValidationError(1003, "Password has to have between 8 to 50 characters.")]);
     }
 
     return success((0, _index.curryN)(1, function (a) {
@@ -227,6 +227,28 @@ module.exports = function (AV) {
     })).ap(matchesEnumHoroscope(horoscope));
   }
 
+  /**
+   * Verify whatsUp.
+   * @alias module:ValidationStack/UserValidation.verifyWhatsUp
+   * @param {string} whatsUp - The whatsUp status of User object.
+   * @returns {Validation} An Validation object containing the results.
+   */
+  function verifyWhatsUp(whatsUp) {
+    /**
+     * Check whether the username has 30 or less characters
+     * @function isWhatsUpLength
+     * @param {string} whatsUp - The whatsUp status of User object.
+     * @returns {Validation} A Validation object containing the results.
+     */
+    function isWhatsUpLength(whatsUp) {
+      return _validator2.default.isLength(whatsUp, 0, 29) ? success(whatsUp) : failure([new _index.ValidationError(1005, "WhatsUp has to have 30 or less characters.")]);
+    }
+
+    return success((0, _index.curryN)(1, function (a) {
+      return [a];
+    })).ap(isWhatsUpLength(whatsUp));
+  }
+
   return {
     verifyUsername: verifyUsername,
     verifyPassword: verifyPassword,
@@ -235,7 +257,8 @@ module.exports = function (AV) {
     verifyGender: verifyGender,
     verifyBirthday: verifyBirthday,
     verifyAgeGroup: verifyAgeGroup,
-    verifyHoroscope: verifyHoroscope
+    verifyHoroscope: verifyHoroscope,
+    verifyWhatsUp: verifyWhatsUp
   };
 }; /**
     * Created by Lance on 2015-12-19.
