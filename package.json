@@ -1,16 +1,17 @@
 {
-  "name": "validation-stack",
-  "version": "0.1.8",
+  "name": "leancloud-utility",
+  "version": "0.2.0",
   "description": "Validation logic.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "ssh://git@dev.lai.io:2345/diffusion/VS/validation-stack.git"
+    "url": "ssh://git@dev.lai.io:2345/diffusion/VS/leancloud-utility.git"
   },
   "license": "LicenseRef-LICENSE",
   "keywords": [
     "LeanCloud",
-    "validation"
+    "validation",
+    "model"
   ],
   "author": "Lance Zhu <lzhu@lai.io>",
   "scripts": {
