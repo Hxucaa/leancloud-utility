@@ -1,4 +1,4 @@
-# Leancloud Utility [![Build Status](https://travis-ci.org/ZenChat/validation-stack.svg?branch=master)](https://travis-ci.org/ZenChat/validation-stack)
+# Leancloud Utility [![Build Status](https://travis-ci.org/ZenChat/validation-stack.svg?branch=master)](https://travis-ci.org/ZenChat/validation-stack) [![Coverage Status](https://coveralls.io/repos/ZenChat/leancloud-utility/badge.svg?branch=master&service=github)](https://coveralls.io/github/ZenChat/leancloud-utility?branch=master)
 
 
 # Folder Structure

@@ -115,6 +115,7 @@ gulp.task("coverage:gen:ci", ["clean:coverage:gen"], () => {
 });
 
 
+gulp.task("coveralls", shell.task(["cat coverage/unit-test/lcov.info | node_modules/coveralls/bin/coveralls.js"])); // eslint-disable-line max-len
 gulp.task("coverage", ["coverage:unit", "coverage:gen"]);
 gulp.task("coverage:ci", ["coverage:unit:ci", "coverage:gen:ci"]);
 

@@ -23,6 +23,7 @@
     "coverage": "NODE_ENV=ci node_modules/.bin/gulp coverage:ci",
     "coverage:unit": "NODE_ENV=ci node_modules/.bin/gulp coverage:unit:ci",
     "coverage:gen": "NODE_ENV=ci node_modules/.bin/gulp coverage:gen:ci",
+    "coveralls": "NODE_ENV=ci node_modules/.bin/gulp coveralls",
     "build": "node_modules/.bin/gulp build"
   },
   "dependencies": {
