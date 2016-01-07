@@ -1,6 +1,4 @@
-/**
- * Created by hxucaa on 2015-11-17.
- */
+
 
 "use strict";
 

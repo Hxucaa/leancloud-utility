@@ -4,8 +4,8 @@
 
 "use strict";
 
-import ValidationError from "../../src/utility/validation/ValidationError";
-import Validation from "../../src/utility/validation/ValidationAF";
+import ValidationError from "../../src/validation/utility/validation/ValidationError";
+import Validation from "../../src/validation/utility/validation/ValidationAF";
 
 /* eslint-disable no-invalid-this */
 

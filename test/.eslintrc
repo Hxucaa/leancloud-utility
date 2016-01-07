@@ -10,7 +10,8 @@
     "expect": true,
     "assert": true,
     "Fixture": true,
-    "Validation": true
+    "Validation": true,
+    "Model": true
   },
   "rules": {
     "semi": [2, "always"],

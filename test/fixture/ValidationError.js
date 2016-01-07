@@ -4,7 +4,7 @@
 
 "use strict";
 
-import ValidationError from "../../src/utility/validation/ValidationError";
+import ValidationError from "../../src/validation/utility/validation/ValidationError";
 
 export const alphanumeric = new ValidationError(
   1001,

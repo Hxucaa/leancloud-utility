@@ -7,10 +7,7 @@ exports.matchEnum = matchEnum;
 
 var _index = require("./validation/index");
 
-var success = _index.ValidationAF.Success; /**
-                                            * Created by Lance on 2015-12-19.
-                                            */
-
+var success = _index.ValidationAF.Success;
 var failure = _index.ValidationAF.Failure;
 
 function matchEnum(value, enums, validationError) {

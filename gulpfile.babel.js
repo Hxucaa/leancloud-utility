@@ -158,12 +158,13 @@ gulp.task("build", ["clean:build"], () => {
   return gulp
     .src(["src/**"], { base: "./src" })
     .pipe(babel({
-      presets: ["es2015"]
+      presets: ["es2015"],
+      comments: false
     }))
     .pipe(gulp.dest("dist"));
 });
 
-gulp.task("dist:compile:w", ["dist:compile"], () => {
+gulp.task("build:w", ["build"], () => {
   gulp.watch(["src/**"]);
 });
 
