@@ -4,74 +4,78 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (av) {
-  return av.Object.extend("Address", {
-    initialize: function initialize() {
-      Object.defineProperty(this, "street", {
-        get: function get() {
-          return this.get("street");
-        },
-        set: function set(value) {
-          this.set("street", value);
-        },
+var _avoscloudSdk = require("avoscloud-sdk");
 
-        enumerable: true
-      });
+var _avoscloudSdk2 = _interopRequireDefault(_avoscloudSdk);
 
-      Object.defineProperty(this, "region", {
-        get: function get() {
-          return this.get("region");
-        },
-        set: function set(value) {
-          this.set("region", value);
-        },
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-        enumerable: true
-      });
+exports.default = _avoscloudSdk2.default.Object.extend("Address", {
+  initialize: function initialize() {
+    Object.defineProperty(this, "street", {
+      get: function get() {
+        return this.get("street");
+      },
+      set: function set(value) {
+        this.set("street", value);
+      },
 
-      Object.defineProperty(this, "postalCode", {
-        get: function get() {
-          return this.get("postalCode");
-        },
-        set: function set(value) {
-          this.set("postalCode", value);
-        },
+      enumerable: true
+    });
 
-        enumerable: true
-      });
+    Object.defineProperty(this, "region", {
+      get: function get() {
+        return this.get("region");
+      },
+      set: function set(value) {
+        this.set("region", value);
+      },
 
-      Object.defineProperty(this, "geoLocation", {
-        get: function get() {
-          return this.get("geoLocation");
-        },
-        set: function set(value) {
-          this.set("geoLocation", value);
-        },
+      enumerable: true
+    });
 
-        enumerable: true
-      });
+    Object.defineProperty(this, "postalCode", {
+      get: function get() {
+        return this.get("postalCode");
+      },
+      set: function set(value) {
+        this.set("postalCode", value);
+      },
 
-      Object.defineProperty(this, "fullAddress", {
-        get: function get() {
-          return this.get("fullAddress");
-        },
-        set: function set(value) {
-          this.set("fullAddress", value);
-        },
+      enumerable: true
+    });
 
-        enumerable: true
-      });
+    Object.defineProperty(this, "geoLocation", {
+      get: function get() {
+        return this.get("geoLocation");
+      },
+      set: function set(value) {
+        this.set("geoLocation", value);
+      },
 
-      Object.defineProperty(this, "isActive", {
-        get: function get() {
-          return this.get("isActive");
-        },
-        set: function set(value) {
-          this.set("isActive", value);
-        },
+      enumerable: true
+    });
 
-        enumerable: true
-      });
-    }
-  }, {});
-};
+    Object.defineProperty(this, "fullAddress", {
+      get: function get() {
+        return this.get("fullAddress");
+      },
+      set: function set(value) {
+        this.set("fullAddress", value);
+      },
+
+      enumerable: true
+    });
+
+    Object.defineProperty(this, "isActive", {
+      get: function get() {
+        return this.get("isActive");
+      },
+      set: function set(value) {
+        this.set("isActive", value);
+      },
+
+      enumerable: true
+    });
+  }
+}, {});

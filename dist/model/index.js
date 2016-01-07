@@ -4,26 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (AV) {
-  return {
-    Business: (0, _Business2.default)(AV),
-
-    Address: (0, _Address2.default)(AV),
-    Region: (0, _Region2.default)(AV),
-
-    User: (0, _User2.default)(AV),
-    Role: (0, _Role2.default)(AV),
-
-    Activation: _Activation2.default,
-    ImageType: _ImageType2.default,
-    UserStatus: _UserStatus2.default,
-    UserType: _UserType2.default,
-    AgeGroup: _AgeGroup2.default,
-    Horoscope: _Horoscope2.default,
-    Gender: _Gender2.default
-  };
-};
-
 var _Business = require("./business/Business.js");
 
 var _Business2 = _interopRequireDefault(_Business);
@@ -74,4 +54,20 @@ var _Gender2 = _interopRequireDefault(_Gender);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-;
+exports.default = {
+  Business: _Business2.default,
+
+  Address: _Address2.default,
+  Region: _Region2.default,
+
+  User: _User2.default,
+  Role: _Role2.default,
+
+  Activation: _Activation2.default,
+  ImageType: _ImageType2.default,
+  UserStatus: _UserStatus2.default,
+  UserType: _UserType2.default,
+  AgeGroup: _AgeGroup2.default,
+  Horoscope: _Horoscope2.default,
+  Gender: _Gender2.default
+};

@@ -26,34 +26,32 @@ import AgeGroup from "./enum/AgeGroup";
 import Horoscope from "./enum/Horoscope";
 import Gender from "./enum/Gender";
 
-export default function(AV) {
   /**
    * Cloud Model.
    * @namespace model
    */
-  return {
-    Business: Business(AV),
-    //BusinessHour: BusinessHour(AV),
-    //Company: Company(AV),
+export default {
+  Business,
+  //BusinessHour,
+  //Company,
 
-    Address: Address(AV),
-    Region: Region(AV),
+  Address,
+  Region,
 
-    //Participation: Participation(AV),
-    //ParticipationMember: ParticipationMember(AV),
-    //PrivateMessage: PrivateMessage(AV),
+  //Participation,
+  //ParticipationMember,
+  //PrivateMessage,
 
-    User: User(AV),
-    Role: Role(AV),
-    //UserPhoto: UserPhoto(AV),
+  User,
+  Role,
+  //UserPhoto,
 
-    // Enums
-    Activation,
-    ImageType,
-    UserStatus,
-    UserType,
-    AgeGroup,
-    Horoscope,
-    Gender
-  };
-}
+  // Enums
+  Activation,
+  ImageType,
+  UserStatus,
+  UserType,
+  AgeGroup,
+  Horoscope,
+  Gender
+};

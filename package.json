@@ -1,11 +1,11 @@
 {
   "name": "leancloud-utility",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Validation logic.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "ssh://git@dev.lai.io:2345/diffusion/VS/leancloud-utility.git"
+    "url": "ssh://git@dev.lai.io:2345/diffusion/LU/leancloud-utility.git"
   },
   "license": "LicenseRef-LICENSE",
   "keywords": [
