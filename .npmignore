@@ -10,3 +10,4 @@ jsdoc.conf.json
 .istanbul.yml
 test/
 src/
+jsdoc/

@@ -24,7 +24,8 @@
     "coverage:unit": "NODE_ENV=ci node_modules/.bin/gulp coverage:unit:ci",
     "coverage:gen": "NODE_ENV=ci node_modules/.bin/gulp coverage:gen:ci",
     "coveralls": "NODE_ENV=ci node_modules/.bin/gulp coveralls",
-    "build": "node_modules/.bin/gulp build"
+    "build": "node_modules/.bin/gulp build",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "avoscloud-sdk": "1.0.0-rc5",
