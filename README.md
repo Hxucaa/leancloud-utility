@@ -36,14 +36,11 @@ Run the following command for testing: `gulp test`. To continuously watch code c
 TBD
 
 # How to release?
-Before releasing run the following two commands to generate transipled es5 code and documentation. We are using [semantic versioning](http://semver.org/): `0(Major).1(Minor).0(Patch)`
-1. Run `npm publish` to publish
-3. Commit and push change to phabricator
-
-# How to update?
-1. Run `git commit -am "message"` to commit you changes
-2. Run `npm version <update_type>` to update the version, this will automatically change the version number in package.json and add a tag to the repo
-2. Run `npm publish` to publish
+Before releasing run the following two commands to generate transipled es5 code and documentation. We are using [semantic versioning](http://semver.org/):
+1. Run `git log --oneline` and cherry pick changes to edit the CHANGELOG.md file
+2. Run `git commit -am "message"` to commit you work
+3. Run `npm version <update_type>` to update the version, this will automatically change the version number in package.json and add a tag to the repo
+4. Run `npm publish` to publish
 3. Run `git push --follow-tags` - this will push two commits, one for your changes and one for npm versioning.
 
 ## Why versioning?
