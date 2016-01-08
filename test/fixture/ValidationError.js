@@ -26,9 +26,19 @@ export const nicknameLength = new ValidationError(
   "Nickname should be less than 20 characters."
 );
 
+export const businessnameLength = new ValidationError(
+  1005,
+  "Businessname should be less than 20 characters."
+);
+
 export const streetLength = new ValidationError(
   1005,
   "Street has to have 100 or less characters."
+);
+
+export const descriptionLength = new ValidationError(
+  1005,
+  "Street has to have 500 or less characters."
 );
 
 export const TypeNotMatchEnumValue = new ValidationError(
@@ -39,4 +49,9 @@ export const TypeNotMatchEnumValue = new ValidationError(
 export const emailFormat = new ValidationError(
   1111,
   "Email format has to be valid. e.g. toucan@lai.io"
+);
+
+export const urlFormat = new ValidationError(
+  1111,
+  "Url format has to be valid. e.g. www.letoucan.io"
 );

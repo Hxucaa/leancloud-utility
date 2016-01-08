@@ -21,7 +21,7 @@ function verifyStreet(street) {
     return _validator2.default.isLength(street, 0, 99) ? success(street) : failure([new _index.ValidationError(1005, "address has to be less than 100 characters.")]);
   }
 
-  return success((0, _index.curryN)(2, function (a, b) {
-    return [a, b];
+  return success((0, _index.curryN)(1, function (a) {
+    return [a];
   })).ap(isStreetLength(street));
 }

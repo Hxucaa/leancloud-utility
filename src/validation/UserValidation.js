@@ -298,15 +298,15 @@ export function verifyWhatsUp(whatsUp) {
 
 /**
  * Check whether the nickname has 20 or less characters
- * @function isNicknameLength
- * @param {string} Nickname - The nickname status of User object.
+ * @alias module:UserValidation.verifyNickname
+ * @param {string} nickname - The nickname status of User object.
  * @returns {Validation} A Validation object containing the results.
  */
 export function verifyNickname(nickname) {
   /**
    * Check whether the nickname has 20 or less characters
    * @function isNicknameLength
-   * @param {string} Nickname - The nickname status of User object.
+   * @param {string} nickname - The nickname status of User object.
    * @returns {Validation} A Validation object containing the results.
    */
   function isNicknameLength(nickname) {

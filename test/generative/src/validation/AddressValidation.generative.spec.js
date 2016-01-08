@@ -36,7 +36,7 @@ describe("User controller validation rules", () => {
       };
 
       it("should generate street string of length 100 or less and all yield success", () => {
-        generator.alphanumericAndSymbols(0, 99, 500).forEach(street => {
+        generator.alphanumericAndSymbols(0, 99, 100).forEach(street => {
           const result = AddressValidation.verifyStreet(street);
 
           expect(result).to.be.success;
@@ -45,7 +45,7 @@ describe("User controller validation rules", () => {
 
       describe("generate street string longer than 30 characters", () => {
         it("should yield failure", () => {
-          generator.alphanumericAndSymbols(101, 200, 500).forEach(street => {
+          generator.alphanumericAndSymbols(101, 200, 100).forEach(street => {
             const result = AddressValidation.verifyStreet(street);
 
             expect(result).to.be.failure;

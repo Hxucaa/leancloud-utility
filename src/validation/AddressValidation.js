@@ -19,7 +19,7 @@ const failure = ValidationAF.Failure;
 
  /**
   * Check whether the streetname is less than 100 characters long.
-  * @function isStreetLength
+  * @alias BusinessValidation.verifyStreet
   * @param {string} street - The street of Address object.
   * @returns {Validation} A Validation object containing the result.
   */
@@ -39,8 +39,8 @@ export function verifyStreet(street) {
      )]);
   }
 
-  return success(curryN(2, (a, b) => {
-    return [a, b];
+  return success(curryN(1, a => {
+    return [a];
   }))
    .ap(isStreetLength(street));
 }
