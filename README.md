@@ -43,7 +43,7 @@ Before releasing run the following two commands to generate transipled es5 code 
 # How to update?
 1. Run `npm version <update_type>` to update the version, this will automatically change the version number in package.json and add a tag to the repo
 2. Run `npm publish` to publish
-3. Commit and push change to phabricator
+3. Commit and run `git push --follow-tags` to push change to phabricator
 
 ## Why versioning?
 You cannot just change the version number with feature updates because you have to wonder if that feature update would really be the version you want to release. Therefore, we'd accumulate updates in the master. Once it hit a threshold, we release the stuff up until that point. This is why it's important the version bump has to be its own commit, it cannot be combined with feature updates.
