@@ -7,7 +7,6 @@ import Business from "./business/Business.js";
 //import Company from "./business/Company.js";
 
 import Address from "./geographic/Address.js";
-import Region from "./geographic/Region.js";
 
 //import Participation from "./participation/Participation.js";
 //import ParticipationMember from "./participation/Participation.js";
@@ -25,6 +24,7 @@ import UserType from "./enum/UserType";
 import AgeGroup from "./enum/AgeGroup";
 import Horoscope from "./enum/Horoscope";
 import Gender from "./enum/Gender";
+import Region from "./enum/Region.js";
 
   /**
    * Cloud Model.
@@ -36,7 +36,6 @@ export default {
   //Company,
 
   Address,
-  Region,
 
   //Participation,
   //ParticipationMember,
@@ -53,5 +52,6 @@ export default {
   UserType,
   AgeGroup,
   Horoscope,
-  Gender
+  Gender,
+  Region
 };

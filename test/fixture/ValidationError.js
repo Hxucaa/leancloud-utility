@@ -55,3 +55,8 @@ export const urlFormat = new ValidationError(
   1111,
   "Url format has to be valid. e.g. www.letoucan.io"
 );
+
+export const regionCodeNotMatch = new ValidationError(
+  1100,
+  "region has to match its enum value."
+);

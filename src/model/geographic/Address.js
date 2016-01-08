@@ -28,15 +28,15 @@ export default AV.Object.extend("Address", {
 
     /**
      * Region
-     * @name model.Address#region
-     * @type {model.Region}
+     * @name model.Address#regionCode
+     * @type {string|model.Region.data.code}
      */
-    Object.defineProperty(this, "region", {
+    Object.defineProperty(this, "regionCode", {
       get() {
-        return this.get("region");
+        return this.get("regionCode");
       },
       set(value) {
-        this.set("region", value);
+        this.set("regionCode", value);
       },
       enumerable: true
     });

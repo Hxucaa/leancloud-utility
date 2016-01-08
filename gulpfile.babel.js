@@ -160,7 +160,8 @@ gulp.task("build", ["clean:build"], () => {
     .src(["src/**"], { base: "./src" })
     .pipe(babel({
       presets: ["es2015"],
-      comments: false
+      comments: false,
+      ignore: ["src/**/*.json"]
     }))
     .pipe(gulp.dest("dist"));
 });

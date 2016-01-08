@@ -4,6 +4,7 @@
 
 import Validator from "validator";
 import { curryN, ValidationError, ValidationAF } from "./utility/validation/index";
+import Region from "../model/enum/Region";
 
 const success = ValidationAF.Success;
 const failure = ValidationAF.Failure;
@@ -43,4 +44,33 @@ export function verifyStreet(street) {
     return [a];
   }))
    .ap(isStreetLength(street));
+}
+
+/**
+ * Verify whether code matches one of the values of Region.
+ * @alias module:AddressValidation.verifyRegion
+ * @param {string} regionCode - The code of matching Region.
+ * @returns {Validation} A Validation object containing the result.
+ */
+export function verifyRegionCode(regionCode) {
+
+  /**
+   * Check whether the code matches
+   * @param {string} regionCode - The code of matching Region.
+   * @returns {Validation} A Validation object containing the result.
+   */
+  function matchesRegionCode(regionCode) {
+
+    return Region.matchByCode(regionCode) ?
+      success(regionCode) :
+      failure([new ValidationError(
+        1100,
+        "region has to match its enum value."
+      )]);
+  }
+
+  return success(curryN(1, a => {
+    return [a];
+  }))
+    .ap(matchesRegionCode(regionCode));
 }

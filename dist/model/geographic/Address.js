@@ -23,12 +23,12 @@ exports.default = _avoscloudSdk2.default.Object.extend("Address", {
       enumerable: true
     });
 
-    Object.defineProperty(this, "region", {
+    Object.defineProperty(this, "regionCode", {
       get: function get() {
-        return this.get("region");
+        return this.get("regionCode");
       },
       set: function set(value) {
-        this.set("region", value);
+        this.set("regionCode", value);
       },
 
       enumerable: true

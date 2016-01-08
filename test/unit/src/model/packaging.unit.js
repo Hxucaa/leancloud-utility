@@ -41,16 +41,6 @@ describe("Package is properly exported", () => {
       });
     });
 
-    describe("Region", () => {
-      it("should export properly", () => {
-        const Region = Model.Region;
-
-        const region = new Region();
-
-        region.should.be.an.instanceof(AV.Object);
-      });
-    });
-
     describe("Business", () => {
       it("should export properly", () => {
         const Business = Model.Business;
@@ -92,24 +82,147 @@ describe("Package is properly exported", () => {
       });
     });
 
-    describe("Activation", () => {
+    describe("ImageType", () => {
       it("should export properly", () => {
 
-        Model.Activation.should.not.be.null;
+        Model.ImageType.should.not.be.null;
       });
     });
 
-    describe("Activation", () => {
+    describe("Region", () => {
       it("should export properly", () => {
 
-        Model.Activation.should.not.be.null;
+        Model.Region.should.not.be.null;
+      });
+
+      describe("member", () => {
+
+        const RegionData = require("../../../../src/model/enum/RegionData");
+
+        describe("data", () => {
+          it("should export `RegionData` properly", () => {
+
+            expect(RegionData.results).to.eql(Model.Region.data);
+          });
+        });
+
+        describe("matchByCode", () => {
+          it("should retrieve a region record based on code", () => {
+            const data = {
+              "code": "110101",
+              "countryCode": "CN",
+              "regionNameE": "dongchengqu",
+              "regionNameC": "东城区",
+              "level": "3",
+              "upperRegion": "1101"
+            };
+
+            expect(Model.Region.matchByCode(data.code)).to.eql(data);
+          });
+
+          context("when given a wrong code", () => {
+            it("should return undefined", () => {
+              expect(Model.Region.matchByCode("898908098908908")).to.be.undefined;
+            });
+          });
+
+          describe("providing a subset of region data to the 2nd parameter", () => {
+
+            const rangeOfData = RegionData.results.slice(0, 100);
+
+            const data = rangeOfData[30];
+
+            it("should return a record based on code", () => {
+
+              expect(Model.Region.matchByCode(data.code, rangeOfData)).to.eql(data);
+
+            });
+
+            context("when given a wrong name", () => {
+              it("should return undefined", () => {
+                expect(Model.Region.matchByCode("111111111111111", rangeOfData)).to.be.undefined;
+              });
+            });
+          });
+        });
+
+        describe("matchByName", () => {
+          it("should retrieve a region record based on name", () => {
+            const data = {
+              "code": "110101",
+              "countryCode": "CN",
+              "regionNameE": "dongchengqu",
+              "regionNameC": "东城区",
+              "level": "3",
+              "upperRegion": "1101"
+            };
+
+            expect(Model.Region.matchByName(data.regionNameC)).to.eql(data);
+          });
+
+          context("when given a wrong name", () => {
+            it("should return undefined", () => {
+              expect(Model.Region.matchByName("找不到")).to.be.undefined;
+            });
+          });
+
+          describe("providing a subset of region data to the 2nd parameter", () => {
+
+            const rangeOfData = RegionData.results.slice(0, 100);
+
+            const data = rangeOfData[30];
+
+            it("should return a record based on code", () => {
+
+              expect(Model.Region.matchByName(data.regionNameC, rangeOfData)).to.eql(data);
+
+            });
+
+            context("when given a wrong name", () => {
+              it("should return undefined", () => {
+                expect(Model.Region.matchByName("找不到", rangeOfData)).to.be.undefined;
+              });
+            });
+          });
+        });
+
+        describe("province", () => {
+          it("should retrieve a list of provinces", () => {
+            Model.Region.province().forEach(r => r.level.should.equal("1"));
+          });
+        });
+
+        describe("municipality", () => {
+          it("should retrieve a list of municipalities", () => {
+            Model.Region.municipality().forEach(r => r.level.should.equal("2"));
+          });
+        });
+
+        describe("district", () => {
+          it("should retrieve a list of districts", () => {
+            Model.Region.district().forEach(r => r.level.should.equal("3"));
+          });
+        });
+
+        describe("levelFourRegions", () => {
+          it("should retrieve a list of levelFourRegions", () => {
+            Model.Region.levelFourRegions().forEach(r => r.level.should.equal("4"));
+          });
+        });
       });
     });
 
-    describe("Activation", () => {
+    describe("UserStatus", () => {
       it("should export properly", () => {
 
-        Model.Activation.should.not.be.null;
+        Model.UserStatus.should.not.be.null;
+      });
+    });
+
+    describe("UserType", () => {
+      it("should export properly", () => {
+
+        Model.UserType.should.not.be.null;
       });
     });
   });

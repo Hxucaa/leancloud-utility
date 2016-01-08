@@ -12,10 +12,6 @@ var _Address = require("./geographic/Address.js");
 
 var _Address2 = _interopRequireDefault(_Address);
 
-var _Region = require("./geographic/Region.js");
-
-var _Region2 = _interopRequireDefault(_Region);
-
 var _User = require("./user/User.js");
 
 var _User2 = _interopRequireDefault(_User);
@@ -52,13 +48,16 @@ var _Gender = require("./enum/Gender");
 
 var _Gender2 = _interopRequireDefault(_Gender);
 
+var _Region = require("./enum/Region.js");
+
+var _Region2 = _interopRequireDefault(_Region);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   Business: _Business2.default,
 
   Address: _Address2.default,
-  Region: _Region2.default,
 
   User: _User2.default,
   Role: _Role2.default,
@@ -69,5 +68,6 @@ exports.default = {
   UserType: _UserType2.default,
   AgeGroup: _AgeGroup2.default,
   Horoscope: _Horoscope2.default,
-  Gender: _Gender2.default
+  Gender: _Gender2.default,
+  Region: _Region2.default
 };
