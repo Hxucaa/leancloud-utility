@@ -295,3 +295,31 @@ export function verifyWhatsUp(whatsUp) {
   }))
     .ap(isWhatsUpLength(whatsUp));
 }
+
+/**
+ * Check whether the nickname has 20 or less characters
+ * @function isNicknameLength
+ * @param {string} Nickname - The nickname status of User object.
+ * @returns {Validation} A Validation object containing the results.
+ */
+export function verifyNickname(nickname) {
+  /**
+   * Check whether the nickname has 20 or less characters
+   * @function isNicknameLength
+   * @param {string} Nickname - The nickname status of User object.
+   * @returns {Validation} A Validation object containing the results.
+   */
+  function isNicknameLength(nickname) {
+    return Validator.isLength(nickname, 0, 19) ?
+      success(nickname) :
+      failure([new ValidationError(
+        1005,
+        "Nickname has to have 20 or less characters."
+      )]);
+  }
+
+  return success(curryN(1, a => {
+    return [a];
+  }))
+    .ap(isNicknameLength(nickname));
+}

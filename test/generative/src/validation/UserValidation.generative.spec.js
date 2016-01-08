@@ -131,4 +131,48 @@ describe("User controller validation rules", () => {
       });
     });
   });
+
+  describe("#RULE verifyNickname", () => {
+
+    describe("generative testing", () => {
+
+      const chance = new Chance();
+
+      const generator = {
+        alphanumericAndSymbols(minLength, maxLength, quantity) {
+          const array = [];
+
+          for (let i = 0; i < quantity; i++) {
+            const length = chance.integer({ min: minLength, max: maxLength });
+            const str = chance.string({
+              length,
+              pool: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()[]"
+            });
+
+            array.push(str);
+          }
+          return array;
+        }
+      };
+
+      it("should generate whatsUp string of length 20 or less and all yield success", () => {
+        generator.alphanumericAndSymbols(0, 19, 100).forEach(nickname => {
+          const result = UserValidation.verifyNickname(nickname);
+
+          expect(result).to.be.success;
+        });
+      });
+
+      describe("generate nickname string longer than 20 characters", () => {
+        it("should yield failure", () => {
+          generator.alphanumericAndSymbols(31, 50, 100).forEach(nickname => {
+            const result = UserValidation.verifyNickname(nickname);
+
+            expect(result).to.be.failure;
+            expect(result).to.have.errors([Fixture.ValidationError.whatsUpLength]);
+          });
+        });
+      });
+    });
+  });
 });

@@ -12,6 +12,7 @@ exports.verifyBirthday = verifyBirthday;
 exports.verifyAgeGroup = verifyAgeGroup;
 exports.verifyHoroscope = verifyHoroscope;
 exports.verifyWhatsUp = verifyWhatsUp;
+exports.verifyNickname = verifyNickname;
 
 var _validator = require("validator");
 
@@ -145,4 +146,14 @@ function verifyWhatsUp(whatsUp) {
   return success((0, _index.curryN)(1, function (a) {
     return [a];
   })).ap(isWhatsUpLength(whatsUp));
+}
+
+function verifyNickname(nickname) {
+  function isNicknameLength(nickname) {
+    return _validator2.default.isLength(nickname, 0, 19) ? success(nickname) : failure([new _index.ValidationError(1005, "Nickname has to have 20 or less characters.")]);
+  }
+
+  return success((0, _index.curryN)(1, function (a) {
+    return [a];
+  })).ap(isNicknameLength(nickname));
 }

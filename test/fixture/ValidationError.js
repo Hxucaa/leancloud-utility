@@ -18,7 +18,12 @@ export const usernameLength = new ValidationError(
 
 export const whatsUpLength = new ValidationError(
   1005,
-  "WhatsUp has to have 30 or less characters."
+  "WhatsUp shoudl be less than 30 characters."
+);
+
+export const nicknameLength = new ValidationError(
+  1005,
+  "Nickname should be less than 20 characters."
 );
 
 export const streetLength = new ValidationError(

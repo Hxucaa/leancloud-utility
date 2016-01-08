@@ -145,4 +145,32 @@ describe("User controller validation rules", () => {
       });
     });
   });
+
+  describe("#RULE verifyNickname", () => {
+
+    describe("success", () => {
+
+      context("when nickname is shorter than 20 in length", () => {
+        it("should yield success", () => {
+          const nickname = "LeToucanHasArrived";
+          const result = UserValidation.verifyNickname(nickname);
+
+          expect(result).to.be.success;
+        });
+      });
+    });
+
+    describe("failure", () => {
+
+      describe("when nickname length is greater than 20", () => {
+        it("should yield failure", () => {
+          const nickname = Array(21).join("a");
+          const result = UserValidation.verifyNickname(nickname);
+
+          expect(result).to.be.failure;
+          expect(result).to.have.errors([Fixture.ValidationError.nicknameLength]);
+        });
+      });
+    });
+  });
 });
