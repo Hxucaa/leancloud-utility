@@ -35,3 +35,8 @@ export const TypeNotMatchEnumValue = new ValidationError(
   1100,
   "Type has to match its enum value."
 );
+
+export const emailFormat = new ValidationError(
+  1111,
+  "Email format has to be valid. e.g. toucan@lai.io"
+);
