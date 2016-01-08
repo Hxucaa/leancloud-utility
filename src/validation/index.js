@@ -3,7 +3,8 @@
  */
 
 import * as UserValidation from "./UserValidation";
-
+import * as AddressValidation from "./AddressValidation.js";
 export {
-  UserValidation
+  UserValidation,
+  AddressValidation
 };

@@ -21,6 +21,11 @@ export const whatsUpLength = new ValidationError(
   "WhatsUp has to have 30 or less characters."
 );
 
+export const streetLength = new ValidationError(
+  1005,
+  "Street has to have 100 or less characters."
+);
+
 export const TypeNotMatchEnumValue = new ValidationError(
   1100,
   "Type has to match its enum value."

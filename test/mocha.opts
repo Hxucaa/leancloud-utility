@@ -1,4 +1,4 @@
---reporter nyan
+--reporter Nyan
 --timeout 5000
 --check-leaks
 --recursive
