@@ -6,67 +6,172 @@
 import { matchesProperty } from "lodash/utility";
 import { find, filter } from "lodash/collection";
 
-import data from "./RegionData.json";
+import regionData from "./RegionData.json";
 import deepFreeze from "../utility/deepFreeze";
 
 /**
+ * A Region data structure.
+ * @typedef {Object} Region~RegionData
+ * @property {string} code - A unique identifier for each region.
+ * @property {string} countryCode - The standard country code.
+ * @property {?string} regionNameE - The name of the region in English if available.
+ * @property {string} regionNameC - The name of the region in Chinese if available.
+ * @property {?string} level - The level of nesting. There are 4 levels of region identified by the `level` key. "1" represents the highest level, as in province. "2" represents municipal. "3" represents district. "4" represents special district which doesn't follow the hierarchy. level "4" should be handled different. Right now we only use the first 3 regions.
+ * @property {string} upperRegion - The parent region. This key refers to the {@link code} of the region. If the value is "0", then it is the top most region.
+ */
+
+/**
  * Region
+ * The actual data of all regions can be found in the `data` key. It return an array of region object.
+ * Under the
+ *
+ *
+
  * @readonly
  * @memberof model
  */
 const Region = {
   /**
    * 地图数据
-   * {{code: string, countryCode: string, regionNameE: string, regionNameC: string, level: number, upperRegion: string}[]}
+   * @typedef {Region~RegionData[]}
+   *
    */
-  data: data.results,
+  data: regionData.results,
 
   /**
    * 通过code寻找匹配的Region
    * @param {string} code - Unique identifier of a Region.
-   * @param {Object[]} [source=data] - 搜索的Region范围. 如不提供则默认为原始数据. Can compose with other functions to specify the range of search.
-   * @returns {Object} 根据code所找到的匹配的Region
+   * @param {Region~RegionData[]} [source=data] - 搜索的Region范围. 如不提供则默认为原始数据. Can compose with other functions to specify the range of search.
+   * @returns {?Region~RegionData} 根据code所找到的匹配的Region. If not found, return undefined.
    */
-  matchByCode(code, source = data.results) {
+  matchByCode(code, source = this.data) {
     return find(source, matchesProperty("code", code));
   },
 
   /**
    * 通过name寻找匹配的Region
    * @param {string} name - Name of a region.
-   * @param {Object[]} [source=data] - 搜索的Region范围. 如不提供则默认为原始数据. Can compose with other functions to specify the range of search.
-   * @returns {Object} 根据name所找到的匹配的Region
+   * @param {Region~RegionData[]} [source=data] - 搜索的Region范围. 如不提供则默认为原始数据. Can compose with other functions to specify the range of search.
+   * @returns {?Region~RegionData} 根据name所找到的匹配的Region. If not found, return undefined.
    */
-  matchByName(name, source = data.results) {
+  matchByName(name, source = this.data) {
     return find(source, matchesProperty("regionNameC", name));
   },
 
   /**
    * 省
-   * @returns {Object[]} 省
+   * @returns {Region~RegionData[]} 省
    */
   province() {
-    return filter(data.results, matchesProperty("level", "1"));
+    return filter(this.data, matchesProperty("level", "1"));
   },
 
   /**
    * 市
-   * @returns {Object[]} 市
+   * @returns {Region~RegionData[]} 市
    */
   municipality() {
-    return filter(data.results, matchesProperty("level", "2"));
+    return filter(this.data, matchesProperty("level", "2"));
   },
 
   /**
    * 区,县
-   * @returns {Object[]} 区,县
+   * @returns {Region~RegionData[]} 区,县
    */
   district() {
-    return filter(data.results, matchesProperty("level", "3"));
+    return filter(this.data, matchesProperty("level", "3"));
   },
 
+  /**
+   * 4th level region.
+   * @returns {Region~RegionData[]}
+   */
   levelFourRegions() {
-    return filter(data.results, matchesProperty("level", "4"));
+    return filter(this.data, matchesProperty("level", "4"));
+  },
+
+  /**
+   * Check whether the region is province.
+   * @param {Region~RegionData} region - Region Data
+   * @returns {boolean} return true if province, otherwise false.
+   */
+  isProvince(region) {
+    return region.level === "1";
+  },
+
+  /**
+   * Check whether the region is municipal.
+   * @param {Region~RegionData} region - Region Data
+   * @returns {boolean} return true if municipal, otherwise false.
+   */
+  isMunicipality(region) {
+    return region.level === "2";
+  },
+
+  /**
+   * Check whether the region is district.
+   * @param {Region~RegionData} region - Region Data
+   * @returns {boolean} return true if district, otherwise false.
+   */
+  isDistrict(region) {
+    return region.level === "3";
+  },
+
+  /**
+   * Check whether the region is 4th level region.
+   * @param {Region~RegionData} region - Region Data
+   * @returns {boolean} return true if 4th level, otherwise false.
+   */
+  isLevelFourRegion(region) {
+    return region.level === "4";
+  },
+
+  /**
+   * Find the parent region of the provided child region.
+   * @param {Region~RegionData} child - The child region.
+   * @returns {?Region~RegionData} If found, return the parent region. Otherwise, return undefined.
+   */
+  parent(child) {
+    if (this.isProvince(child)) {
+      return undefined;
+    }
+    return find(this.data, matchesProperty("code", child.upperRegion));
+  },
+
+  /**
+   * Find all parents of the region.
+   * @param {Region~RegionData} child - A child region.
+   * @returns {Region~RegionData[]} An array of region. The top most region is at the head of the array. The lowest level region at the tail. The child region is always at the tail of the array.
+   */
+  allParents(child) {
+
+    const findParent = this.parent.bind(this);
+    const result = [child];
+
+    function recur(region) {
+
+      const parent = findParent(region);
+
+      // if parent not found, exit
+      if (!parent) {
+        return;
+      }
+
+      // if parent and child are the same region, exit
+      if (region.code === parent.code) {
+        return;
+      }
+
+      // add parent to the front of array
+      result.unshift(parent);
+
+      recur(parent);
+    }
+
+
+    recur(child);
+
+    return result;
   }
 };
 

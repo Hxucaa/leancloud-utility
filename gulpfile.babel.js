@@ -31,10 +31,11 @@ gulp.task("default", () => {
 
 });
 
+function suppressError() {
+  this.emit("end"); // eslint-disable-line no-invalid-this
+}
 
-gulp.task("test:unit", () => {
-
-  process.env.NODE_ENV = "test";
+const unitTest = () => {
 
   return gulp
     .src(["test/unit/**/*.js"], { read: false })
@@ -45,13 +46,26 @@ gulp.task("test:unit", () => {
       ignoreLeaks: false,
       recursive: true,
       harmony: true
-    }))
+    }));
+};
+
+gulp.task("test:unit", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return unitTest()
     .on("error", gutil.log);
 });
 
-gulp.task("test:gen", () => {
+gulp.task("test:unit:w", () => {
 
   process.env.NODE_ENV = "test";
+
+  return unitTest()
+    .on("error", suppressError);
+});
+
+const generativeTest = () => {
 
   return gulp
     .src(["test/generative/**/*.js"], { read: false })
@@ -62,8 +76,23 @@ gulp.task("test:gen", () => {
       ignoreLeaks: false,
       recursive: true,
       harmony: true
-    }))
+    }));
+};
+
+gulp.task("test:gen", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return generativeTest()
     .on("error", gutil.log);
+});
+
+gulp.task("test:gen:w", () => {
+
+  process.env.NODE_ENV = "test";
+
+  return generativeTest()
+    .on("error", suppressError);
 });
 
 gulp.task("test", callback => {
@@ -75,10 +104,19 @@ gulp.task("test", callback => {
   );
 });
 
-gulp.task("test:w", ["test"], () => {
+gulp.task("test:watch", callback => {
+  runSequence(
+    "lint",
+    "test:unit:w",
+    "test:gen:w",
+    callback
+  );
+});
+
+gulp.task("test:w", ["test:watch"], () => {
   gulp.watch(
     ["src/**", "test/**"],
-    ["test"]
+    ["test:watch"]
   );
 });
 
