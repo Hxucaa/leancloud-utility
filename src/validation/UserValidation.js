@@ -310,11 +310,11 @@ export function verifyNickname(nickname) {
    * @returns {Validation} A Validation object containing the results.
    */
   function isNicknameLength(nickname) {
-    return Validator.isLength(nickname, 0, 19) ?
+    return Validator.isLength(nickname, 1, 19) ?
       success(nickname) :
       failure([new ValidationError(
         1005,
-        "Nickname has to have 20 or less characters."
+        "Nickname has to have between 1 to 20 characters."
       )]);
   }
 

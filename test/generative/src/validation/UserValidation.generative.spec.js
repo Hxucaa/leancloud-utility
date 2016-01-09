@@ -155,8 +155,8 @@ describe("User controller validation rules", () => {
         }
       };
 
-      it("should generate whatsUp string of length 20 or less and all yield success", () => {
-        generator.alphanumericAndSymbols(0, 19, 100).forEach(nickname => {
+      it("should generate nickname string of length 20 or less and all yield success", () => {
+        generator.alphanumericAndSymbols(1, 19, 100).forEach(nickname => {
           const result = UserValidation.verifyNickname(nickname);
 
           expect(result).to.be.success;
@@ -169,7 +169,7 @@ describe("User controller validation rules", () => {
             const result = UserValidation.verifyNickname(nickname);
 
             expect(result).to.be.failure;
-            expect(result).to.have.errors([Fixture.ValidationError.whatsUpLength]);
+            expect(result).to.have.errors([Fixture.ValidationError.nicknameLength]);
           });
         });
       });

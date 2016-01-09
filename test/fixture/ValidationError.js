@@ -23,7 +23,7 @@ export const whatsUpLength = new ValidationError(
 
 export const nicknameLength = new ValidationError(
   1005,
-  "Nickname should be less than 20 characters."
+  "Nickname should be between 1 to 20 characters."
 );
 
 export const businessnameLength = new ValidationError(

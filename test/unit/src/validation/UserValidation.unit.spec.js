@@ -172,5 +172,18 @@ describe("User controller validation rules", () => {
         });
       });
     });
+
+    describe("failure", () => {
+
+      describe("when nickname length is less than 2", () => {
+        it("should yield failure", () => {
+          const nickname = "";
+          const result = UserValidation.verifyNickname(nickname);
+
+          expect(result).to.be.failure;
+          expect(result).to.have.errors([Fixture.ValidationError.nicknameLength]);
+        });
+      });
+    });
   });
 });
