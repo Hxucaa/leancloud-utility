@@ -1,3 +1,9 @@
+# 0.2.7
+New features
+------------
+- df5d522 Add convenient methods to Region
+
+
 # 0.2.5
 ## Initial npm release
 
