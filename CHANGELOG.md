@@ -1,4 +1,6 @@
 # 0.2.7
+## 0.2.7
+
 New features
 ------------
 - df5d522 Add convenient methods to Region
