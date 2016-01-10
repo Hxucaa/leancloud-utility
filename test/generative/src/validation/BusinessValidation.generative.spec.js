@@ -56,7 +56,7 @@ describe("User controller validation rules", () => {
     });
   });
 
-  describe("#RULE verifyBusinessDecription", () => {
+  describe("#RULE verifyBusinessDescription", () => {
 
     describe("generative testing", () => {
 
@@ -81,7 +81,7 @@ describe("User controller validation rules", () => {
 
       it("should business descrpition of length 500 or less and all yield success", () => {
         generator.alphanumericAndSymbols(0, 499, 100).forEach(description => {
-          const result = BusinessValidation.verifyDecription(description);
+          const result = BusinessValidation.verifyDescription(description);
 
           expect(result).to.be.success;
         });
@@ -90,7 +90,7 @@ describe("User controller validation rules", () => {
       describe("generate description longer than 500 characters", () => {
         it("should yield failure", () => {
           generator.alphanumericAndSymbols(501, 2500, 100).forEach(description => {
-            const result = BusinessValidation.verifyDecription(description);
+            const result = BusinessValidation.verifyDescription(description);
 
             expect(result).to.be.failure;
             expect(result).to.have.errors([Fixture.ValidationError.descriptionLength]);

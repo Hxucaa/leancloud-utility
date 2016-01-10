@@ -102,14 +102,14 @@ export function verifyUrl(url) {
 }
 
 /**
- * Check whether the business decription has 500 or less characters
- * @alias module:BusinessValidation.verifyDecription
+ * Check whether the business description has 500 or less characters
+ * @alias module:BusinessValidation.verifyDescription
  * @param {string} description - The description of Business object.
  * @returns {Validation} A Validation object containing the results.
  */
-export function verifyDecription(description) {
+export function verifyDescription(description) {
   /**
-   * Check whether the business decription has 500 or less characters
+   * Check whether the business description has 500 or less characters
    * @function isDescriptionLength
    * @param {string} description - The description of Business object.
    * @returns {Validation} A Validation object containing the results.

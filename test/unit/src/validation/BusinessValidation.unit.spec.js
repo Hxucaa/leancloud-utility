@@ -80,14 +80,14 @@
    });
  });
 
- describe("#RULE verifyDecription", () => {
+ describe("#RULE verifyDescription", () => {
 
    describe("success", () => {
 
      context("when business description is less than 500 characters", () => {
        it("should yield success", () => {
          const description = "LeToucanHasArrived";
-         const result = BusinessValidation.verifyDecription(description);
+         const result = BusinessValidation.verifyDescription(description);
 
          expect(result).to.be.success;
        });
@@ -96,7 +96,7 @@
    describe("when business description is greater than 500 characters", () => {
      it("should yield failure", () => {
        const description = Array(501).join("a");
-       const result = BusinessValidation.verifyDecription(description);
+       const result = BusinessValidation.verifyDescription(description);
 
        expect(result).to.be.failure;
        expect(result).to.have.errors([Fixture.ValidationError.descriptionLength]);
