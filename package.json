@@ -1,6 +1,6 @@
 {
   "name": "leancloud-utility",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Validation logic.",
   "main": "dist/index.js",
   "repository": {
