@@ -123,7 +123,7 @@ gulp.task("test:w", ["test:watch"], () => {
 gulp.task("coverage:unit", ["clean:coverage:unit"], () => {
   return gulp
     .src(["README.md"], { read: false })
-    .pipe(shell(["node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover --dir coverage/unit-test node_modules/.bin/_mocha -- test/unit --opts test/mocha.opts --harmony"]));  // eslint-disable-line max-len
+    .pipe(shell(["node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- test/unit --opts test/mocha.opts --harmony"]));  // eslint-disable-line max-len
 });
 
 gulp.task("coverage:unit:w", ["coverage:unit"], () => {
@@ -140,7 +140,7 @@ gulp.task("coverage:gen:w", ["coverage:gen"], () => {
   gulp.watch(lintSrc, ["coverage:unit"]);
 });
 
-gulp.task("coveralls", shell.task(["cat coverage/unit-test/lcov.info | node_modules/coveralls/bin/coveralls.js"])); // eslint-disable-line max-len
+gulp.task("coveralls", shell.task(["cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"])); // eslint-disable-line max-len
 gulp.task("coverage", ["coverage:unit", "coverage:gen"]);
 
 gulp.task("lint", () => {
