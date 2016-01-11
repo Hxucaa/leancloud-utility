@@ -131,7 +131,7 @@ const Region = {
    * @param {Region~RegionData} child - The child region.
    * @returns {?Region~RegionData} If found, return the parent region. Otherwise, return undefined.
    */
-  parent(child) {
+  getParent(child) {
     if (this.isProvince(child)) {
       return undefined;
     }
@@ -143,9 +143,9 @@ const Region = {
    * @param {Region~RegionData} child - A child region.
    * @returns {Region~RegionData[]} An array of region. The top most region is at the head of the array. The lowest level region at the tail. The child region is always at the tail of the array.
    */
-  allParents(child) {
+  getAllParents(child) {
 
-    const findParent = this.parent.bind(this);
+    const findParent = this.getParent.bind(this);
     const result = [child];
 
     function recur(region) {
@@ -172,6 +172,21 @@ const Region = {
     recur(child);
 
     return result;
+  },
+
+  /**
+   * Find the child regions (the children) of the provided parent region.
+   * @param {Region~RegionData} parent - The parent region.
+   * @returns {?Region~RegionData[]} If found, return the an array of child regions (the children). Otherwise, return undefined.
+   */
+  getChildren(parent) {
+    if (this.isDistrict(parent)) {
+      return undefined;
+    }
+    else if (this.isLevelFourRegion(parent)) {
+      return undefined;
+    }
+    return filter(this.data, matchesProperty("upperRegion", parent.code));
   }
 };
 

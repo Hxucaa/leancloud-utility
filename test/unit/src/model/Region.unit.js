@@ -209,38 +209,56 @@ describe("Region", () => {
       });
     });
 
-    describe("parent", () => {
+    describe("getParent", () => {
       it("should return the parent of the region", () => {
-        Region.parent(levelThree).should.eql(levelTwo);
+        Region.getParent(levelThree).should.eql(levelTwo);
       });
 
       context("when given a level 1 region", () => {
         it("should return undefined", () => {
-          expect(Region.parent(levelOne)).to.be.undefined;
+          expect(Region.getParent(levelOne)).to.be.undefined;
         });
       });
     });
 
-    describe("allParents", () => {
+    describe("getChildren", () => {
+      it("should return the children of the region", () => {
+        Region.getChildren(levelTwo).should.include(levelThree);
+      });
+
+      context("when given a level 3 region", () => {
+        it("should return undefined", () => {
+          expect(Region.getChildren(levelThree)).to.be.undefined;
+        });
+      });
+
+      context("when given a level 4 region", () => {
+        it("should return undefined", () => {
+          expect(Region.getChildren(levelFour)).to.be.undefined;
+        });
+      });
+    });
+
+    describe("getAllParents", () => {
 
       context("when given level 3 region", () => {
         it("should return an array of parent regions with the region itself", () => {
 
           const expectedResult = [levelOne, levelTwo, levelThree];
 
-          Region.allParents(levelThree).should.eql(expectedResult);
+          Region.getAllParents(levelThree).should.eql(expectedResult);
         });
       });
 
       context("when given a level 1 region", () => {
         it("should return an array containing only the level 1 region", () => {
-          Region.allParents(levelOne).should.eql([levelOne]);
+          Region.getAllParents(levelOne).should.eql([levelOne]);
         });
       });
 
       context("when give a level 4 region", () => {
         it("should return an array containing only the level 4 region", () => {
-          Region.allParents(levelFour).should.eql([levelFour]);
+          Region.getAllParents(levelFour).should.eql([levelFour]);
         });
       });
     });
