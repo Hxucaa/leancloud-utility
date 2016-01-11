@@ -42,7 +42,7 @@ const Region = {
    * 通过code寻找匹配的Region
    * @param {string} code - Unique identifier of a Region.
    * @param {Region~RegionData[]} [source=data] - 搜索的Region范围. 如不提供则默认为原始数据. Can compose with other functions to specify the range of search.
-   * @returns {?Region~RegionData} 根据code所找到的匹配的Region. If not found, return undefined.
+   * @returns {Region~RegionData|undefined} 根据code所找到的匹配的Region. If not found, return undefined.
    */
   matchByCode(code, source = this.data) {
     return find(source, matchesProperty("code", code));
@@ -52,7 +52,7 @@ const Region = {
    * 通过name寻找匹配的Region
    * @param {string} name - Name of a region.
    * @param {Region~RegionData[]} [source=data] - 搜索的Region范围. 如不提供则默认为原始数据. Can compose with other functions to specify the range of search.
-   * @returns {?Region~RegionData} 根据name所找到的匹配的Region. If not found, return undefined.
+   * @returns {Region~RegionData|undefined} 根据name所找到的匹配的Region. If not found, return undefined.
    */
   matchByName(name, source = this.data) {
     return find(source, matchesProperty("regionNameC", name));
@@ -129,7 +129,7 @@ const Region = {
   /**
    * Find the parent region of the provided child region.
    * @param {Region~RegionData} child - The child region.
-   * @returns {?Region~RegionData} If found, return the parent region. Otherwise, return undefined.
+   * @returns {Region~RegionData|undefined} If found, return the parent region. Otherwise, return undefined.
    */
   getParent(child) {
     if (this.isProvince(child)) {
@@ -177,7 +177,7 @@ const Region = {
   /**
    * Find the child regions (the children) of the provided parent region.
    * @param {Region~RegionData} parent - The parent region.
-   * @returns {?Region~RegionData[]} If found, return the an array of child regions (the children). Otherwise, return undefined.
+   * @returns {Region~RegionData[]|undefined} If found, return the an array of child regions (the children). Otherwise, return undefined.
    */
   getChildren(parent) {
     if (this.isDistrict(parent)) {
