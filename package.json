@@ -15,17 +15,18 @@
   ],
   "author": "Lance Zhu <lzhu@lai.io>",
   "scripts": {
-    "test:unit": "NODE_ENV=test node_modules/.bin/gulp test:unit",
-    "test:gen": "NODE_ENV=test node_modules/.bin/gulp test:gen",
-    "test": "NODE_ENV=test npm run test:unit && npm run test:gen",
-    "lint": "node_modules/.bin/eslint . --fix",
+    "test": "node_modules/.bin/gulp test",
+    "test:gen": "node_modules/.bin/gulp test:gen",
+    "test:all": "npm run lint && npm test && npm run test:gen",
+    "lint": "node_modules/.bin/gulp lint",
     "jsdoc": "node_modules/.bin/gulp jsdoc",
     "coverage": "node_modules/.bin/gulp coverage",
-    "coverage:unit": "node_modules/.bin/gulp coverage:unit",
     "coverage:gen": "node_modules/.bin/gulp coverage:gen",
+    "coverage:all": "npm run coverage && npm run coverage:gen",
     "coveralls": "node_modules/.bin/gulp coveralls",
     "build": "node_modules/.bin/gulp build",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "ci": "npm run lint && npm run coverage && npm run coverage:gen"
   },
   "dependencies": {
     "avoscloud-sdk": "1.0.0-rc5",

@@ -49,7 +49,7 @@ const unitTest = () => {
     }));
 };
 
-gulp.task("test:unit", () => {
+gulp.task("test", () => {
 
   process.env.NODE_ENV = "test";
 
@@ -57,7 +57,7 @@ gulp.task("test:unit", () => {
     .on("error", gutil.log);
 });
 
-gulp.task("test:unit:w", () => {
+gulp.task("test:w", () => {
 
   process.env.NODE_ENV = "test";
 
@@ -95,19 +95,10 @@ gulp.task("test:gen:w", () => {
     .on("error", suppressError);
 });
 
-gulp.task("test", callback => {
-  runSequence(
-    "lint",
-    "test:unit",
-    "test:gen",
-    callback
-  );
-});
-
 gulp.task("test:watch", callback => {
   runSequence(
     "lint",
-    "test:unit:w",
+    "test:w",
     "test:gen:w",
     callback
   );
@@ -120,17 +111,17 @@ gulp.task("test:w", ["test:watch"], () => {
   );
 });
 
-gulp.task("coverage:unit", ["clean:coverage:unit"], () => {
+gulp.task("coverage", () => {
   return gulp
     .src(["README.md"], { read: false })
     .pipe(shell(["node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- test/unit --opts test/mocha.opts --harmony"]));  // eslint-disable-line max-len
 });
 
-gulp.task("coverage:unit:w", ["coverage:unit"], () => {
+gulp.task("coverage:w", ["coverage"], () => {
   gulp.watch(lintSrc, ["coverage:unit"]);
 });
 
-gulp.task("coverage:gen", ["clean:coverage:gen"], () => {
+gulp.task("coverage:gen", () => {
   return gulp
     .src(["README.md"], { read: false })
     .pipe(shell(["node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover --dir coverage/generative-test node_modules/.bin/_mocha -- test/generative --opts test/mocha.opts --harmony"]));  // eslint-disable-line max-len
@@ -141,7 +132,7 @@ gulp.task("coverage:gen:w", ["coverage:gen"], () => {
 });
 
 gulp.task("coveralls", shell.task(["cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"])); // eslint-disable-line max-len
-gulp.task("coverage", ["coverage:unit", "coverage:gen"]);
+
 
 gulp.task("lint", () => {
   // ESLint ignores files with "node_modules" paths.
@@ -153,7 +144,7 @@ gulp.task("lint", () => {
     // of the file object so it can be used by other modules.
     .pipe(eslint({
       warnFileIgnored: true,
-      fix: true,
+      fix: false,
       useEslintrc: true
     }))
     // eslint.format() outputs the lint results to the console.
@@ -200,18 +191,6 @@ gulp.task("clean:build", () => {
   ]);
 });
 
-gulp.task("clean:coverage:unit", () => {
-  return del([
-    "coverage/unit-test/**"
-  ]);
-});
-
-gulp.task("clean:coverage:gen", () => {
-  return del([
-    "coverage/generative-test/**"
-  ]);
-});
-
 gulp.task("clean:jsdoc", () => {
 
   return del([
@@ -238,7 +217,7 @@ gulp.task("help", () => { // eslint-disable-line max-statements
   gutil.log("$ gulp test");
   gutil.log("");
   gutil.log("Run only unit tests");
-  gutil.log("$ gulp test:unit");
+  gutil.log("$ gulp test");
   gutil.log("");
   gutil.log("Watch tests");
   gutil.log("$ gulp test:w");
