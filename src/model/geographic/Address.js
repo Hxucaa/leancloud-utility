@@ -42,6 +42,51 @@ export default AV.Object.extend("Address", {
     });
 
     /**
+     * Region
+     * @name model.Address#province
+     * @type {string|model.Region.data.code}
+     */
+    Object.defineProperty(this, "province", {
+      get() {
+        return this.get("province");
+      },
+      set(value) {
+        this.set("province", value);
+      },
+      enumerable: true
+    });
+
+    /**
+     * Region
+     * @name model.Address#city
+     * @type {string|model.Region.data.code}
+     */
+    Object.defineProperty(this, "city", {
+      get() {
+        return this.get("city");
+      },
+      set(value) {
+        this.set("city", value);
+      },
+      enumerable: true
+    });
+
+    /**
+     * Region
+     * @name model.Address#district
+     * @type {string|model.Region.data.code}
+     */
+    Object.defineProperty(this, "district", {
+      get() {
+        return this.get("district");
+      },
+      set(value) {
+        this.set("district", value);
+      },
+      enumerable: true
+    });
+
+    /**
      * Postal code.
      * @name model.Address#postalCode
      * @type {string}
