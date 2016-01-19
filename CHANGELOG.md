@@ -1,3 +1,9 @@
+# 0.2.13
+
+New features
+------------
+- fa98f92 Add province, city, district computed columns to `Address` table
+
 # 0.2.7
 ## 0.2.7
 
