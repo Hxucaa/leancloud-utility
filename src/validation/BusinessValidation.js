@@ -63,7 +63,7 @@ export function verifyName(name) {
       success(name) :
       failure([new ValidationError(
         1005,
-        "Nickname has to have 20 or less characters."
+        "Business name has to have 20 or less characters."
       )]);
   }
 
