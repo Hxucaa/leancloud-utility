@@ -8,9 +8,10 @@ import Business from "./business/Business.js";
 
 import Address from "./geographic/Address.js";
 
-//import Participation from "./participation/Participation.js";
-//import ParticipationMember from "./participation/Participation.js";
-//import PrivateMessage from "./participation/PrivateMessage.js";
+import Event from "./participation/Event";
+import Event_Participation from "./participation/Event_Participation";
+import Archived_Event from "./participation/Archived_Event";
+import Archived_Event_Participation from "./participation/Archived_Event_Participation";
 
 import User from "./user/User.js";
 import Role from "./user/Role.js";
@@ -25,6 +26,11 @@ import AgeGroup from "./enum/AgeGroup";
 import Horoscope from "./enum/Horoscope";
 import Gender from "./enum/Gender";
 import Region from "./enum/Region.js";
+import EventType from "./enum/EventType";
+import EventStatus from "./enum/EventStatus";
+import EventParticipationStatus from "./enum/EventParticipationStatus";
+import ArchivedEventStatus from "./enum/ArchivedEventStatus";
+import ArchivedEventParticipationStatus from "./enum/ArchivedEventParticipationStatus";
 
   /**
    * Cloud Model.
@@ -37,9 +43,10 @@ export default {
 
   Address,
 
-  //Participation,
-  //ParticipationMember,
-  //PrivateMessage,
+  Event,
+  Event_Participation,
+  Archived_Event,
+  Archived_Event_Participation,
 
   User,
   Role,
@@ -53,5 +60,10 @@ export default {
   AgeGroup,
   Horoscope,
   Gender,
-  Region
+  Region,
+  EventType,
+  EventStatus,
+  EventParticipationStatus,
+  ArchivedEventStatus,
+  ArchivedEventParticipationStatus
 };

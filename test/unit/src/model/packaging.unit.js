@@ -50,6 +50,46 @@ describe("Package is properly exported", () => {
         business.should.be.an.instanceof(AV.Object);
       });
     });
+
+    describe("Archived_Event", () => {
+      it("should export properly", () => {
+        const Archived_Event = Model.Archived_Event;
+
+        const archivedEvent = new Archived_Event();
+
+        archivedEvent.should.be.an.instanceof(AV.Object);
+      });
+    });
+
+    describe("Archived_Event_Participation", () => {
+      it("should export properly", () => {
+        const Archived_Event_Participation = Model.Archived_Event_Participation;
+
+        const archivedEventParticipation = new Archived_Event_Participation();
+
+        archivedEventParticipation.should.be.an.instanceof(AV.Object);
+      });
+    });
+
+    describe("Event", () => {
+      it("should export properly", () => {
+        const Event = Model.Event;
+
+        const event = new Event();
+
+        event.should.be.an.instanceof(AV.Object);
+      });
+    });
+
+    describe("Event_Participation", () => {
+      it("should export properly", () => {
+        const Event_Participation = Model.Event_Participation;
+
+        const eventParticipation = new Event_Participation();
+
+        eventParticipation.should.be.an.instanceof(AV.Object);
+      });
+    });
   });
 
   describe("Enums", () => {
@@ -100,6 +140,41 @@ describe("Package is properly exported", () => {
       it("should export properly", () => {
 
         Model.UserType.should.not.be.null;
+      });
+    });
+
+    describe("ArchivedEventParticipationStatus", () => {
+      it("should export properly", () => {
+
+        Model.ArchivedEventParticipationStatus.should.not.be.null;
+      });
+    });
+
+    describe("ArchivedEventStatus", () => {
+      it("should export properly", () => {
+
+        Model.ArchivedEventStatus.should.not.be.null;
+      });
+    });
+
+    describe("EventParticipationStatus", () => {
+      it("should export properly", () => {
+
+        Model.EventParticipationStatus.should.not.be.null;
+      });
+    });
+
+    describe("EventStatus", () => {
+      it("should export properly", () => {
+
+        Model.EventStatus.should.not.be.null;
+      });
+    });
+
+    describe("EventType", () => {
+      it("should export properly", () => {
+
+        Model.EventType.should.not.be.null;
       });
     });
   });
