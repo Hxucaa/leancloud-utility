@@ -1,5 +1,19 @@
-# 0.2.13
+# 0.3.1
+## 0.3.1
 
+New features
+------------
+- 5f9dbb9 Update most dependencies to most current version.
+
+# 0.3.0
+## 0.3.0
+
+New features
+------------
+- c09296b Add models: Event, Event_Participation, Archived_Event, and Archived_Event_Participation. Add enums: ArchivedEventParticipationStatus, ArchivedEventStatus, EventParticipationStatus, EventStatus, EventType.
+
+# 0.2.13
+# 0.2.13
 New features
 ------------
 - fa98f92 Add province, city, district computed columns to `Address` table
