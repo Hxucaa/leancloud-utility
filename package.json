@@ -26,7 +26,9 @@
     "coveralls": "node_modules/.bin/gulp coveralls",
     "build": "node_modules/.bin/gulp build",
     "prepublish": "npm run build",
-    "ci": "npm run lint && npm run coverage && npm run coverage:gen"
+    "ci": "npm run lint && npm run coverage && npm run coverage:gen",
+    "preversion": "npm test",
+    "version": "npm run build"
   },
   "dependencies": {
     "avoscloud-sdk": "1.0.0-rc5",
