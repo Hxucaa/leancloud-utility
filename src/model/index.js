@@ -31,6 +31,7 @@ import EventStatus from "./enum/EventStatus";
 import EventParticipationStatus from "./enum/EventParticipationStatus";
 import ArchivedEventStatus from "./enum/ArchivedEventStatus";
 import ArchivedEventParticipationStatus from "./enum/ArchivedEventParticipationStatus";
+import RelationshipStatus from "./enum/RelationshipStatus";
 
   /**
    * Cloud Model.
@@ -65,5 +66,6 @@ export default {
   EventStatus,
   EventParticipationStatus,
   ArchivedEventStatus,
-  ArchivedEventParticipationStatus
+  ArchivedEventParticipationStatus,
+  RelationshipStatus
 };

@@ -177,6 +177,13 @@ describe("Package is properly exported", () => {
         Model.EventType.should.not.be.null;
       });
     });
+
+    describe("RelationshipStatus", () => {
+      it("should export properly", () => {
+
+        Model.RelationshipStatus.should.not.be.null;
+      });
+    });
   });
 
 });
