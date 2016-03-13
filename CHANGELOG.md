@@ -1,3 +1,10 @@
+# 0.4.1
+## 0.4.1
+
+Bug Fixing
+------------
+- 9aede65 Now client has to pass in an initialized instance of "leanengine" or "avoscloud-sdk".
+
 # 0.4.0
 ## 0.4.0
 
