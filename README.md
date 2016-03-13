@@ -48,3 +48,4 @@ Before releasing run the following two commands to generate transipled es5 code 
 You cannot just change the version number with feature updates because you have to wonder if that feature update would really be the version you want to release. Therefore, we'd accumulate updates in the master. Once it hit a threshold, we release the stuff up until that point. This is why it's important the version bump has to be its own commit, it cannot be combined with feature updates.
 
 Another reason is that leancloud-utility is used by RN, leancloud-server, and deployed on leancloud. Pointing directly to package repository would always download the latest version. However the latest version is master's HEAD so it may not work - breaking changes, etc.
+
