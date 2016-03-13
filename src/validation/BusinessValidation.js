@@ -76,14 +76,14 @@ export function verifyName(name) {
 /**
  * Check whether the business url is valid.
  * @alias module:BusinessValidation.verifyUrl
- * @param {string} websiteUrl - The url of Business object.
+ * @param {string} url - The url of Business object.
  * @returns {Validation} A Validation object containing the result.
  */
 export function verifyUrl(url) {
   /**
    * Check whether the business url is valid.
    * @function isUrlFormat
-   * @param {string} websiteUrl - The url of Business object.
+   * @param {string} url - The url of Business object.
    * @returns {Validation} A Validation object containing the result.
    */
   function isUrlFormat(url) {

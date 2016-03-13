@@ -1,3 +1,10 @@
+# 0.4.0
+## 0.4.0
+
+New features
+------------
+- 7297b03 Implement validation logic for new database schema.
+
 # 0.3.1
 ## 0.3.1
 
