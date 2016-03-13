@@ -37,35 +37,37 @@ import RelationshipStatus from "./enum/RelationshipStatus";
    * Cloud Model.
    * @namespace model
    */
-export default {
-  Business,
-  //BusinessHour,
-  //Company,
+export default function model(AV) {
+  return {
+    Business: Business(AV),
+    //BusinessHour,
+    //Company,
 
-  Address,
+    Address: Address(AV),
 
-  Event,
-  Event_Participation,
-  Archived_Event,
-  Archived_Event_Participation,
+    Event: Event(AV),
+    Event_Participation: Event_Participation(AV),
+    Archived_Event: Archived_Event(AV),
+    Archived_Event_Participation: Archived_Event_Participation(AV),
 
-  User,
-  Role,
-  //UserPhoto,
+    User: User(AV),
+    Role: Role(AV),
+    //UserPhoto,
 
-  // Enums
-  Activation,
-  ImageType,
-  UserStatus,
-  UserType,
-  AgeGroup,
-  Horoscope,
-  Gender,
-  Region,
-  EventType,
-  EventStatus,
-  EventParticipationStatus,
-  ArchivedEventStatus,
-  ArchivedEventParticipationStatus,
-  RelationshipStatus
-};
+    // Enums
+    Activation,
+    ImageType,
+    UserStatus,
+    UserType,
+    AgeGroup,
+    Horoscope,
+    Gender,
+    Region,
+    EventType,
+    EventStatus,
+    EventParticipationStatus,
+    ArchivedEventStatus,
+    ArchivedEventParticipationStatus,
+    RelationshipStatus
+  };
+}

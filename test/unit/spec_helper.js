@@ -21,7 +21,7 @@ global.expect = chai.expect;
 global.assert = chai.assert;
 global.Fixture = Fixture;
 global.Validation = validation;
-global.Model = model;
+global.Model = model(AV);
 
 before(done => {
   console.log("---------------------------------------------------------------------------------");
